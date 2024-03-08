@@ -21,6 +21,6 @@ export default defineNuxtConfig({
     },
   },
   devtools: { enabled: true },
-  modules: ["@unocss/nuxt", "nuxt-icon"],
+  modules: ["@unocss/nuxt", "nuxt-icon", "nuxt-lodash"],
   css: ["@unocss/reset/tailwind.css"],
 });
