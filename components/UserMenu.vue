@@ -88,7 +88,12 @@ export default defineComponent({
     OnClickOutside,
   },
   setup() {
-    const user = ref({id: 'test', email: 'test@test.com', firstName: "John", lastName: "Doe"});
+    const user = ref({
+      id: "test",
+      email: "test@test.com",
+      firstName: "John",
+      lastName: "Doe",
+    });
     return { user };
   },
   data() {

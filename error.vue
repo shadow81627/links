@@ -46,24 +46,24 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
   },
-})
+});
 
 const title =
-  props.error.statusCode === 404 ? 'Page Not Found' : props.error.statusMessage
+  props.error.statusCode === 404 ? "Page Not Found" : props.error.statusMessage;
 const description =
   props.error.statusCode === 404
-    ? 'The specified file was not found on this website. Please check the URL for mistakes and try again.'
+    ? "The specified file was not found on this website. Please check the URL for mistakes and try again."
     : props.error.statusMessage !== props.error.message
       ? props.error.message
-      : undefined
+      : undefined;
 useHead({
   title,
   meta: [
     {
-      hid: 'description',
-      name: 'description',
+      hid: "description",
+      name: "description",
       content: description,
     },
   ],
-})
+});
 </script>

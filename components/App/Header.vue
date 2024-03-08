@@ -12,9 +12,7 @@
       transform: translateY(0%);
     "
   >
-    <div
-      class="w-full flex items-center justify-between px-2 h-64px w-full"
-    >
+    <div class="w-full flex items-center justify-between px-2 h-64px w-full">
       <div class="flex items-center">
         <button
           class="navbar-toggler flex border-0 hover:shadow-none hover:no-underline py-2 px-2.5 bg-transparent focus:outline-none focus:ring-0 focus:shadow-none focus:no-underline hover:bg-gray-500/10 rounded-full"

@@ -22,12 +22,11 @@
 <script setup>
 const draw = ref(false);
 const items = [
-{
-  "name": "Home",
-  "icon": "carbon:home",
-  "url": "/",
-  "pos": "1/1"
-}
-
+  {
+    name: "Home",
+    icon: "carbon:home",
+    url: "/",
+    pos: "1/1",
+  },
 ];
 </script>
