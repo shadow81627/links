@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@formkit/tempo": "0.0.15",
+    "@libsql/client": "0.5.3",
+    "drizzle-orm": "0.30.0",
     "nuxt": "3.10.3"
   },
   "packageManager": "yarn@4.1.1",
