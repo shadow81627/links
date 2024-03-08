@@ -1,8 +1,8 @@
 import pkg from "./package.json";
 import getCommit from "./utils/getCommit";
 
-const title = 'Links';
-const description = 'A bookmark manager.';
+const title = "Links";
+const description = "A bookmark manager.";
 
 const HOST = process.env.HOST;
 const env = {
@@ -27,8 +27,11 @@ export default defineNuxtConfig({
     "@unocss/nuxt",
     "nuxt-icon",
     "nuxt-lodash",
-    "@vite-pwa/nuxt"
+    "@vite-pwa/nuxt",
+    "@nuxt/image",
+    //
   ],
+
   css: ["@unocss/reset/tailwind.css"],
 
   app: {
@@ -47,6 +50,19 @@ export default defineNuxtConfig({
           content: "black-translucent",
         },
       ],
+    },
+  },
+
+  image: {
+    provider: "ipx",
+    format: ["avif", "webp"],
+    domains: [
+      "https://apify.com",
+      "https://cheerio.js.org",
+      "https://crawlee.dev",
+    ],
+    ipx: {
+      svgo: true,
     },
   },
 
