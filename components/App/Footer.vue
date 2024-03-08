@@ -30,11 +30,14 @@
 </template>
 
 <script setup>
-import { format } from "@formkit/tempo"
+import { format } from "@formkit/tempo";
 const config = useRuntimeConfig();
 const version = config.public.VERSION;
 const commit = config.public.COMMIT;
-const lastModified = format(config.public.DATE_GENERATED, "ddd, DD MMM YYYY HH:mm:ss Z");
+const lastModified = format(
+  config.public.DATE_GENERATED,
+  "ddd, DD MMM YYYY HH:mm:ss Z",
+);
 function shortHash(value) {
   return value ? value.substring(0, 7) : null;
 }

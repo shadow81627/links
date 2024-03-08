@@ -7,9 +7,7 @@
         </div>
       </div>
     </section>
-    
-    <section class="container">
-      A bookmark manager.
-    </section>
+
+    <section class="container">A bookmark manager.</section>
   </div>
 </template>
