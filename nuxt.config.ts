@@ -1,3 +1,4 @@
+import dynamicImport from "vite-plugin-dynamic-import";
 import pkg from "./package.json";
 import getCommit from "./utils/getCommit";
 
@@ -71,6 +72,10 @@ export default defineNuxtConfig({
 
   colorMode: {
     classSuffix: "",
+  },
+
+  vite: {
+    plugins: [dynamicImport()],
   },
 
   sourcemap: true,
