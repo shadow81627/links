@@ -17,8 +17,10 @@
             :key="key"
             class="col w-full"
           >
-            <strong>{{ key }}</strong>
-            <div>{{ value }}</div>
+            <strong class="capitalize">{{ key }}</strong>
+            <div>
+              {{ value }}
+            </div>
           </div>
         </div>
       </section>
