@@ -28,5 +28,10 @@ const items = [
     url: "/",
     pos: "1/1",
   },
+  {
+    icon: "carbon:user",
+    name: "Users",
+    url: "/users",
+  },
 ];
 </script>
