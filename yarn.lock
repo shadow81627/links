@@ -787,7 +787,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@iconify/types@npm:^2.0.0":
+"@iconify/collections@npm:^1.0.401":
+  version: 1.0.402
+  resolution: "@iconify/collections@npm:1.0.402"
+  dependencies:
+    "@iconify/types": "npm:*"
+  checksum: 10c0/0501ea4377b9f6662bba4d85ba16139be84d008cb714b0a04890a44ffaf252cc69191e1214f36e55eca94cf2abed915118ae4d1282570916d13ef6dc60c1ba3e
+  languageName: node
+  linkType: hard
+
+"@iconify/types@npm:*, @iconify/types@npm:^2.0.0":
   version: 2.0.0
   resolution: "@iconify/types@npm:2.0.0"
   checksum: 10c0/65a3be43500c7ccacf360e136d00e1717f050b7b91da644e94370256ac66f582d59212bdb30d00788aab4fc078262e91c95b805d1808d654b72f6d2072a7e4b2
@@ -806,6 +815,17 @@ __metadata:
     local-pkg: "npm:^0.5.0"
     mlly: "npm:^1.5.0"
   checksum: 10c0/59637de1ca1d40b3338c360d1e31bbb72115799cab1413c8f2e2c95aea97d23eeb26dbbf150b011a0b1b922ef8a3a207fee81536419de3dfaf21d9b8d0921d2a
+  languageName: node
+  linkType: hard
+
+"@iconify/vue@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "@iconify/vue@npm:4.1.1"
+  dependencies:
+    "@iconify/types": "npm:^2.0.0"
+  peerDependencies:
+    vue: ">=3"
+  checksum: 10c0/de10337f61ac5ed2b5eb17187463523935b035e16cbdd2199a02e036b064c28ddb2e630487c4402dec523bddabb3404b1c368a1ed977a68130496406787559f2
   languageName: node
   linkType: hard
 
@@ -1071,7 +1091,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/devtools-kit@npm:1.0.8":
+"@nuxt/devtools-kit@npm:1.0.8, @nuxt/devtools-kit@npm:^1.0.8":
   version: 1.0.8
   resolution: "@nuxt/devtools-kit@npm:1.0.8"
   dependencies:
@@ -1152,7 +1172,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:3.10.3, @nuxt/kit@npm:^3.10.0, @nuxt/kit@npm:^3.8.2, @nuxt/kit@npm:^3.9.1":
+"@nuxt/kit@npm:3.10.3, @nuxt/kit@npm:^3.10.0, @nuxt/kit@npm:^3.10.3, @nuxt/kit@npm:^3.8.2, @nuxt/kit@npm:^3.9.1":
   version: 3.10.3
   resolution: "@nuxt/kit@npm:3.10.3"
   dependencies:
@@ -5685,10 +5705,23 @@ __metadata:
     "@vueuse/components": "npm:10.9.0"
     "@vueuse/core": "npm:10.9.0"
     nuxt: "npm:^3.10.3"
+    nuxt-icon: "npm:0.6.9"
     vue: "npm:^3.4.19"
     vue-router: "npm:^4.3.0"
   languageName: unknown
   linkType: soft
+
+"nuxt-icon@npm:0.6.9":
+  version: 0.6.9
+  resolution: "nuxt-icon@npm:0.6.9"
+  dependencies:
+    "@iconify/collections": "npm:^1.0.401"
+    "@iconify/vue": "npm:^4.1.1"
+    "@nuxt/devtools-kit": "npm:^1.0.8"
+    "@nuxt/kit": "npm:^3.10.3"
+  checksum: 10c0/751963390d3dbdab9d07d5fece49744192ed29a60fd22357156624b99c1fffc1c11c90d623835bfb7b6f8746c3fad9f591b53302c8265ad9c9a0b3a9a9b34879
+  languageName: node
+  linkType: hard
 
 "nuxt@npm:^3.10.3":
   version: 3.10.3
