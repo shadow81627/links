@@ -42,7 +42,15 @@
           class="flex items-center text-black-900 hover:text-black-900 focus:text-black-900 mr-1 py-2 px-2.5"
           to="/"
         >
-          <div class="ml-1">Links</div>
+          <div class="ml-1">
+            <img
+              src="/icon.svg"
+              class="navbar-brand"
+              height="32"
+              width="32"
+              alt="Links"
+            />
+          </div>
         </NuxtLink>
       </div>
       <div class="flex justify-between">
