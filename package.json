@@ -16,6 +16,8 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@dicebear/collection": "7.1.1",
+    "@dicebear/core": "7.1.1",
     "@formkit/tempo": "0.0.15",
     "@libsql/client": "0.5.3",
     "@lucia-auth/adapter-drizzle": "1.0.2",
