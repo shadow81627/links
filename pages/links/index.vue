@@ -38,24 +38,28 @@
             :to="`/links/${encodeURIComponent(item.attributes.title)}`"
             class="max-w-full flex flex-col justify-between flex-grow-1 bg-white dark:bg-slate-800 rounded-lg ring-1 ring-slate-900/5 shadow-md overflow-hidden"
           >
-            <!-- <NuxtPicture
+            <NuxtPicture
               v-if="item.attributes.image"
               :src="item.attributes.image"
               class="flex-grow-0 max-w-full h-auto bg-slate-200"
               crossorigin="anonymous"
               itemprop="image"
-              fit="cover"
+              fit="inside"
               loading="lazy"
+              format="avif,webp,png"
               sizes="xs:100vw sm:50vw md:50vw lg:33vw xl:25vw"
+              background="#FFFFFFFF"
               :img-attrs="{
                 width: 640,
-                height: 480,
+                height: 360,
                 style: {
+                  'object-fit': 'contain',
+                  'aspect-ratio': 640 / 360,
                   'max-width': '100%',
                   height: 'auto',
                 },
               }"
-            ></NuxtPicture> -->
+            ></NuxtPicture>
             <div
               class="d-block font-500 flex-none text-[1.25rem] px-4 p-y[0.5rem] leading-8"
             >
