@@ -10,6 +10,9 @@
     "preview": "nuxt preview",
     "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore .",
     "lint:fix": "eslint --ext .ts,.js,.vue --ignore-path .gitignore . --fix",
+    "drizzle:generate": "drizzle-kit generate:sqlite",
+    "drizzle:push": "drizzle-kit push:sqlite",
+    "drizzle:studio": "drizzle-kit studio",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
@@ -28,6 +31,7 @@
     "@unocss/nuxt": "0.58.5",
     "@vueuse/components": "10.9.0",
     "@vueuse/core": "10.9.0",
+    "drizzle-kit": "0.20.14",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.1.3",
