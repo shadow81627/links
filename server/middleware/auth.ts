@@ -39,11 +39,11 @@ export default defineEventHandler(async (event) => {
   event.context.session = session;
   event.context.user = user;
 
-  appendResponseHeader(
-    event,
-    "Cache-Control",
-    "private, max-age=60, stale-while-revalidate=60",
-  );
+  // appendResponseHeader(
+  //   event,
+  //   "Cache-Control",
+  //   "private, max-age=60, stale-while-revalidate=60",
+  // );
 
   const { pathname } = getRequestURL(event);
   if (
