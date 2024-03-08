@@ -12,14 +12,12 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "nuxt": "^3.10.3",
-    "vue": "^3.4.19",
-    "vue-router": "^4.3.0"
+    "nuxt": "3.10.3"
   },
   "packageManager": "yarn@4.1.1",
   "devDependencies": {
     "@nuxt/eslint-config": "0.2.0",
-    "@types/eslint": "^8",
+    "@types/eslint": "8",
     "@unocss/nuxt": "0.58.5",
     "@vueuse/components": "10.9.0",
     "@vueuse/core": "10.9.0",
