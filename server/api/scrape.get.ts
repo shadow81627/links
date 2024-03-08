@@ -5,7 +5,7 @@ export default defineEventHandler(async () => {
   // Crawlers come with various utilities, e.g. for logging.
   // Here we use debug level of logging to improve the debugging experience.
   // This functionality is optional!
-  log.setLevel(LogLevel.DEBUG);
+  // log.setLevel(LogLevel.DEBUG);
 
   const scraperRules = (
     await Promise.all([
@@ -15,14 +15,16 @@ export default defineEventHandler(async () => {
       import("metascraper-image"),
       import("metascraper-logo-favicon"),
       import("metascraper-logo"),
-      import("metascraper-clearbit"),
+      // import("metascraper-clearbit"),
       import("metascraper-publisher"),
       import("metascraper-title"),
       import("metascraper-url"),
     ])
   ).map((r) => (r.default ?? r)());
 
-  const scraper = metascraper([...scraperRules]);
+  const scraper = await metascraper(scraperRules);
+
+  const results = [];
 
   // Create an instance of the CheerioCrawler class - a crawler
   // that automatically loads the URLs and parses their HTML using the cheerio library.
@@ -50,13 +52,18 @@ export default defineEventHandler(async () => {
       // - request: an instance of the Request class with information such as the URL that is being crawled and HTTP method
       // - $: the cheerio object containing parsed HTML
       async requestHandler({ request, $, body }) {
-        log.debug(`Processing ${request.url}...`);
+        // log.debug(`Processing ${request.url}...`);
 
         const metadata = await scraper({ url: request.url, html: body });
 
         // Store the results to the dataset. In local configuration,
         // the data will be stored as JSON files in ./storage/datasets/default
-        await Dataset.pushData({
+        // await Dataset.pushData({
+        //   url: request.url,
+        //   heading: $("h1").first().text(),
+        //   ...metadata,
+        // });
+        results.push({
           url: request.url,
           heading: $("h1").first().text(),
           ...metadata,
@@ -65,7 +72,7 @@ export default defineEventHandler(async () => {
 
       // This function is called if the page processing failed more than maxRequestRetries + 1 times.
       failedRequestHandler({ request }) {
-        log.debug(`Request ${request.url} failed twice.`);
+        // log.debug(`Request ${request.url} failed twice.`);
       },
     },
     new Configuration({
@@ -76,10 +83,10 @@ export default defineEventHandler(async () => {
   // Run the crawler and wait for it to finish.
   await crawler.run(["https://crawlee.dev"]);
 
-  log.debug("Crawler finished.");
+  // log.debug("Crawler finished.");
 
-  const values = await crawler.getData();
-  const data = values.items.map((item) => ({ attributes: item }));
+  // const values = await crawler.getData();
+  const data = results.map((item) => ({ attributes: item }));
 
   return {
     data,
