@@ -17,25 +17,24 @@
           }}</span>
         </div>
         <span class="text-slate-500 px-2">
-          {{ lastModified.format(format) }}
+          {{ lastModified }}
         </span>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <AppRefresh></AppRefresh>
+        <!-- <AppRefresh></AppRefresh> -->
       </div>
     </div>
   </footer>
 </template>
 
 <script setup>
-import dayjs from "dayjs";
+import { format } from "@formkit/tempo"
 const config = useRuntimeConfig();
 const version = config.public.VERSION;
 const commit = config.public.COMMIT;
-const lastModified = dayjs(config.public.DATE_GENERATED);
-const format = "ddd, DD MMM YYYY HH:mm:ss Z";
+const lastModified = format(config.public.DATE_GENERATED, "ddd, DD MMM YYYY HH:mm:ss Z");
 function shortHash(value) {
   return value ? value.substring(0, 7) : null;
 }

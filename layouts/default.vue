@@ -13,7 +13,7 @@
       <main class="min-h-[calc(100vh-64px)]">
         <NuxtPage></NuxtPage>
       </main>
-      <!-- <AppFooter></AppFooter> -->
+      <AppFooter></AppFooter>
       <NavigationDraw v-model:draw="draw" :items="items"></NavigationDraw>
     </div>
   </div>
