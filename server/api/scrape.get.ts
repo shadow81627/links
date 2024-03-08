@@ -81,7 +81,7 @@ export default defineEventHandler(async () => {
   );
 
   // Run the crawler and wait for it to finish.
-  await crawler.run(["https://crawlee.dev"]);
+  await crawler.run(["https://crawlee.dev", "https://apify.com"]);
 
   // log.debug("Crawler finished.");
 

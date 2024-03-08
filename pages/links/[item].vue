@@ -30,7 +30,7 @@
 const route = useRoute();
 const { data, pending } = await useFetch("/api/scrape", {
   lazy: true,
-  server: false,
+  // server: false,
   transform({ data }) {
     const _data = data.data ?? data;
     if (Array.isArray(_data)) {
@@ -42,7 +42,7 @@ const { data, pending } = await useFetch("/api/scrape", {
     return _data;
   },
 });
-if (!data.value) {
+if (!pending.value && !data.value) {
   throw createError({
     statusCode: 404,
     statusMessage: "Link Not Found",
