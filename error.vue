@@ -49,7 +49,10 @@ const props = defineProps({
 });
 
 const title =
-  props.error.statusCode === 404 ? "Page Not Found" : props.error.statusMessage;
+  props.error.statusCode === 404 &&
+  props.error.statusMessage.includes("Page not found")
+    ? "Page Not Found"
+    : props.error.statusMessage;
 const description =
   props.error.statusCode === 404
     ? "The specified file was not found on this website. Please check the URL for mistakes and try again."
