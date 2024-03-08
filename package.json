@@ -22,6 +22,7 @@
     "@formkit/tempo": "0.0.15",
     "@libsql/client": "0.5.3",
     "@lucia-auth/adapter-drizzle": "1.0.2",
+    "@nuxt/image": "1.4.0",
     "crawlee": "3.8.1",
     "drizzle-orm": "0.30.0",
     "lucia": "3.0.1",
