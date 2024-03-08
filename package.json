@@ -31,6 +31,7 @@
     "@nuxt/eslint-config": "0.2.0",
     "@types/eslint": "8",
     "@unocss/nuxt": "0.58.5",
+    "@vite-pwa/nuxt": "0.6.0",
     "@vueuse/components": "10.9.0",
     "@vueuse/core": "10.9.0",
     "drizzle-kit": "0.20.14",

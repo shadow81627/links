@@ -1,8 +1,10 @@
 import pkg from "./package.json";
 import getCommit from "./utils/getCommit";
 
-const HOST = process.env.HOST;
+const title = 'Links';
+const description = 'A bookmark manager.';
 
+const HOST = process.env.HOST;
 const env = {
   HOST,
   VERSION: pkg.version,
@@ -21,12 +23,17 @@ export default defineNuxtConfig({
     },
   },
   devtools: { enabled: true },
-  modules: ["@unocss/nuxt", "nuxt-icon", "nuxt-lodash"],
+  modules: [
+    "@unocss/nuxt",
+    "nuxt-icon",
+    "nuxt-lodash",
+    "@vite-pwa/nuxt"
+  ],
   css: ["@unocss/reset/tailwind.css"],
 
   app: {
     head: {
-      title: "Links",
+      title,
       viewport: "width=device-width,initial-scale=1",
       link: [
         { rel: "icon", href: "/favicon.ico", sizes: "any" },
@@ -34,8 +41,7 @@ export default defineNuxtConfig({
         // { rel: "manifest", href: "/manifest.webmanifest" },
       ],
       meta: [
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
-        { name: "description", content: "Links" },
+        { name: "description", content: description },
         {
           name: "apple-mobile-web-app-status-bar-style",
           content: "black-translucent",
@@ -43,4 +49,6 @@ export default defineNuxtConfig({
       ],
     },
   },
+
+  sourcemap: true,
 });
