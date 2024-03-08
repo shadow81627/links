@@ -7,20 +7,33 @@ export default defineEventHandler(async () => {
   // This functionality is optional!
   // log.setLevel(LogLevel.DEBUG);
 
-  const scraperRules = (
-    await Promise.all([
-      import("metascraper-author"),
-      import("metascraper-date"),
-      import("metascraper-description"),
-      import("metascraper-image"),
-      import("metascraper-logo-favicon"),
-      import("metascraper-logo"),
-      // import("metascraper-clearbit"),
-      import("metascraper-publisher"),
-      import("metascraper-title"),
-      import("metascraper-url"),
-    ])
-  ).map((r) => (r.default ?? r)());
+  const scraperRules = await Promise.all(
+    [
+      "metascraper-author",
+      "metascraper-date",
+      "metascraper-description",
+      "metascraper-image",
+      "metascraper-logo-favicon",
+      "metascraper-logo",
+      "metascraper-clearbit",
+      "metascraper-publisher",
+      "metascraper-title",
+      "metascraper-url",
+    ].map(async (i) => {
+      const imported = await import(i);
+      const module = imported.default ?? imported;
+      if (i === "metascraper-logo-favicon") {
+        return module({
+          pickFn: async (sizes, { pickBiggerSize, gotOpts }) => {
+            const preferred = sizes.find((item) => item.rel?.includes("svg"));
+            return preferred ?? (await pickBiggerSize(sizes, { gotOpts }));
+          },
+        });
+      } else {
+        return module();
+      }
+    }),
+  );
 
   const scraper = await metascraper(scraperRules);
 
@@ -85,6 +98,8 @@ export default defineEventHandler(async () => {
     "https://crawlee.dev",
     "https://apify.com",
     "https://cheerio.js.org/",
+    "https://metascraper.js.org/",
+    "https://brightdata.com/",
   ]);
 
   // log.debug("Crawler finished.");

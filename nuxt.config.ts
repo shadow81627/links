@@ -60,6 +60,8 @@ export default defineNuxtConfig({
       "https://apify.com",
       "https://cheerio.js.org",
       "https://crawlee.dev",
+      "https://metascraper.js.org",
+      "https://brightdata.com",
     ],
     ipx: {
       svgo: true,
