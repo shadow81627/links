@@ -8,7 +8,7 @@
         @click="toggle"
       >
         <img
-          :src="`https://api.dicebear.com/7.x/shapes/svg?seed=${user?.id}`"
+          :src="`/api/users/${user?.id}/image`"
           class="rounded-full w-32px h-32px m-auto"
           width="32"
           height="32"
@@ -37,7 +37,7 @@
         <div v-if="user" class="flex px-4 py-2">
           <div class="pr-8px">
             <img
-              :src="`https://api.dicebear.com/7.x/shapes/svg?seed=${user.id}`"
+              :src="`/api/users/${user?.id}/image`"
               class="rounded-full w-32px h-32px"
               width="32"
               height="32"
