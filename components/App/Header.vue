@@ -54,6 +54,7 @@
         </NuxtLink>
       </div>
       <div class="flex justify-between">
+        <DarkToggle class="px-2"></DarkToggle>
         <UserMenu></UserMenu>
       </div>
     </div>

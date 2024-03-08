@@ -4165,7 +4165,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:^3.10.0, @nuxt/kit@npm:^3.10.3, @nuxt/kit@npm:^3.8.0, @nuxt/kit@npm:^3.8.2, @nuxt/kit@npm:^3.9.0, @nuxt/kit@npm:^3.9.1":
+"@nuxt/kit@npm:^3.10.0, @nuxt/kit@npm:^3.10.3, @nuxt/kit@npm:^3.8.0, @nuxt/kit@npm:^3.8.1, @nuxt/kit@npm:^3.8.2, @nuxt/kit@npm:^3.9.0, @nuxt/kit@npm:^3.9.1":
   version: 3.10.3
   resolution: "@nuxt/kit@npm:3.10.3"
   dependencies:
@@ -4303,6 +4303,17 @@ __metadata:
   peerDependencies:
     vue: ^3.3.4
   checksum: 10c0/5a9f10010eae6ebb658cc739edd11e33caa71fee98a39d01d5e13437d205b3b80c442934654cf32574646c3713798a58958b20dedc21a4f8132424b349d78afb
+  languageName: node
+  linkType: hard
+
+"@nuxtjs/color-mode@npm:3.3.2":
+  version: 3.3.2
+  resolution: "@nuxtjs/color-mode@npm:3.3.2"
+  dependencies:
+    "@nuxt/kit": "npm:^3.8.1"
+    lodash.template: "npm:^4.5.0"
+    pathe: "npm:^1.1.1"
+  checksum: 10c0/daca9e593e4d49ecefc3c76be92061883e15c89d92271049414f7cd74cb037853f3ef025f0629a2bb5307e0572547d526edd4e7caeee8b67100abf94c0343030
   languageName: node
   linkType: hard
 
@@ -10973,6 +10984,7 @@ __metadata:
     "@lucia-auth/adapter-drizzle": "npm:1.0.2"
     "@nuxt/eslint-config": "npm:0.2.0"
     "@nuxt/image": "npm:1.2.0"
+    "@nuxtjs/color-mode": "npm:3.3.2"
     "@types/eslint": "npm:8"
     "@unocss/nuxt": "npm:0.58.5"
     "@vite-pwa/assets-generator": "npm:0.2.4"
@@ -11077,6 +11089,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash._reinterpolate@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "lodash._reinterpolate@npm:3.0.0"
+  checksum: 10c0/cdf592374b5e9eb6d6290a9a07c7d90f6e632cca4949da2a26ae9897ab13f138f3294fd5e81de3e5d997717f6e26c06747a9ad3413c043fd36c0d87504d97da6
+  languageName: node
+  linkType: hard
+
 "lodash.debounce@npm:^4.0.8":
   version: 4.0.8
   resolution: "lodash.debounce@npm:4.0.8"
@@ -11123,6 +11142,25 @@ __metadata:
   version: 4.7.0
   resolution: "lodash.sortby@npm:4.7.0"
   checksum: 10c0/fc48fb54ff7669f33bb32997cab9460757ee99fafaf72400b261c3e10fde21538e47d8cfcbe6a25a31bcb5b7b727c27d52626386fc2de24eb059a6d64a89cdf5
+  languageName: node
+  linkType: hard
+
+"lodash.template@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "lodash.template@npm:4.5.0"
+  dependencies:
+    lodash._reinterpolate: "npm:^3.0.0"
+    lodash.templatesettings: "npm:^4.0.0"
+  checksum: 10c0/62a02b397f72542fa9a989d9fc1a94fc1cb94ced8009fa5c37956746c0cf460279e844126c2abfbf7e235fe27e8b7ee8e6efbf6eac247a06aa05b05457fda817
+  languageName: node
+  linkType: hard
+
+"lodash.templatesettings@npm:^4.0.0":
+  version: 4.2.0
+  resolution: "lodash.templatesettings@npm:4.2.0"
+  dependencies:
+    lodash._reinterpolate: "npm:^3.0.0"
+  checksum: 10c0/2609fea36ed061114dfed701666540efc978b069b2106cd819b415759ed281419893d40f85825240197f1a38a98e846f2452e2d31c6d5ccee1e006c9de820622
   languageName: node
   linkType: hard
 

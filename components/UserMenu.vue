@@ -4,7 +4,7 @@
       <button
         v-if="user"
         v-bind="$attrs"
-        class="py-2 px-4 px-6 py-2.5 rounded inline-block cursor-pointer disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50"
+        class="hover:bg-gray-500/10 py-2 px-4 px-6 py-2.5 rounded inline-block cursor-pointer disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50"
         @click="toggle"
       >
         <img
@@ -32,7 +32,7 @@
 
       <div
         :class="dropdownClasses"
-        class="absolute transition-all duration-500 w-300px shadow-lg bg-white right-0 z-1000 rounded-2"
+        class="absolute transition-all duration-500 w-300px shadow-lg bg-white dark:bg-slate-800 right-0 z-1000 rounded-2"
       >
         <div v-if="user" class="flex px-4 py-2">
           <div class="pr-8px">

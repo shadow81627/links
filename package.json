@@ -43,6 +43,7 @@
   "packageManager": "yarn@4.1.1",
   "devDependencies": {
     "@nuxt/eslint-config": "0.2.0",
+    "@nuxtjs/color-mode": "3.3.2",
     "@types/eslint": "8",
     "@unocss/nuxt": "0.58.5",
     "@vite-pwa/assets-generator": "0.2.4",

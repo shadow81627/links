@@ -29,6 +29,7 @@ export default defineNuxtConfig({
     "nuxt-lodash",
     "@vite-pwa/nuxt",
     "@nuxt/image",
+    "@nuxtjs/color-mode",
     //
   ],
 
@@ -66,6 +67,10 @@ export default defineNuxtConfig({
     ipx: {
       svgo: true,
     },
+  },
+
+  colorMode: {
+    classSuffix: "",
   },
 
   sourcemap: true,
