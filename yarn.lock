@@ -836,6 +836,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@formkit/tempo@npm:0.0.15":
+  version: 0.0.15
+  resolution: "@formkit/tempo@npm:0.0.15"
+  checksum: 10c0/a31fa4d5c4dfa8acbe64b98c9cc02bfcca608bfd593bcd8cdd4ad1e1e20cbb3f995ddfd6217984715b908a9875df255323620fc7fc288cc90e1e9da033cbf221
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.14":
   version: 0.11.14
   resolution: "@humanwhocodes/config-array@npm:0.11.14"
@@ -6339,6 +6346,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "nuxt-app@workspace:."
   dependencies:
+    "@formkit/tempo": "npm:0.0.15"
     "@nuxt/eslint-config": "npm:0.2.0"
     "@types/eslint": "npm:8"
     "@unocss/nuxt": "npm:0.58.5"

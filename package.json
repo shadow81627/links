@@ -12,6 +12,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@formkit/tempo": "0.0.15",
     "nuxt": "3.10.3"
   },
   "packageManager": "yarn@4.1.1",
