@@ -42,7 +42,7 @@
           class="flex items-center text-black-900 hover:text-black-900 focus:text-black-900 mr-1 py-2 px-2.5"
           to="/"
         >
-          <div class="ml-1">Link</div>
+          <div class="ml-1">Links</div>
         </NuxtLink>
       </div>
       <div class="flex justify-between">
