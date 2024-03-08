@@ -48,6 +48,7 @@
     "@vite-pwa/nuxt": "0.6.0",
     "@vueuse/components": "10.9.0",
     "@vueuse/core": "10.9.0",
+    "@vueuse/router": "10.9.0",
     "drizzle-kit": "0.20.14",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",

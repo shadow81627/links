@@ -5825,6 +5825,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vueuse/router@npm:10.9.0":
+  version: 10.9.0
+  resolution: "@vueuse/router@npm:10.9.0"
+  dependencies:
+    "@vueuse/shared": "npm:10.9.0"
+    vue-demi: "npm:>=0.14.7"
+  peerDependencies:
+    vue-router: ">=4.0.0-rc.1"
+  checksum: 10c0/3c97b2a3f6d3e6e693e0b0e1e11222b54110c697f4fbc889197d778ab7d401f1615be61c420731e645393b0bf75c878aafbaf090cc0099a99d205b2c0187b780
+  languageName: node
+  linkType: hard
+
 "@vueuse/shared@npm:10.9.0":
   version: 10.9.0
   resolution: "@vueuse/shared@npm:10.9.0"
@@ -10858,6 +10870,7 @@ __metadata:
     "@vite-pwa/nuxt": "npm:0.6.0"
     "@vueuse/components": "npm:10.9.0"
     "@vueuse/core": "npm:10.9.0"
+    "@vueuse/router": "npm:10.9.0"
     crawlee: "npm:3.8.1"
     drizzle-kit: "npm:0.20.14"
     drizzle-orm: "npm:0.30.0"
