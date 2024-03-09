@@ -18,10 +18,10 @@ export default defineEventHandler(async () => {
   // log.setLevel(LogLevel.DEBUG);
 
   const scraper = await metascraper([
-    metascraperAuthor,
-    metascraperDate,
-    metascraperDescription,
-    metascraperImage,
+    metascraperAuthor(),
+    metascraperDate(),
+    metascraperDescription(),
+    metascraperImage(),
     metascraperLogoFavicon({
       // Pass options directly
       pickFn: async (sizes, { pickBiggerSize, gotOpts }) => {
@@ -29,11 +29,11 @@ export default defineEventHandler(async () => {
         return preferred ?? (await pickBiggerSize(sizes, { gotOpts }));
       },
     }),
-    metascraperLogo,
-    metascraperClearbit,
-    metascraperPublisher,
-    metascraperTitle,
-    metascraperUrl,
+    metascraperLogo(),
+    metascraperClearbit(),
+    metascraperPublisher(),
+    metascraperTitle(),
+    metascraperUrl(),
   ]);
 
   const results = [];
