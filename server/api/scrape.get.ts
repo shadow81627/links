@@ -1,5 +1,15 @@
 import { Dataset, CheerioCrawler, log, LogLevel, Configuration } from "crawlee";
 import metascraper from "metascraper";
+import metascraperAuthor from "metascraper-author";
+import metascraperDate from "metascraper-date";
+import metascraperDescription from "metascraper-description";
+import metascraperImage from "metascraper-image";
+import metascraperLogoFavicon from "metascraper-logo-favicon";
+import metascraperLogo from "metascraper-logo";
+import metascraperClearbit from "metascraper-clearbit";
+import metascraperPublisher from "metascraper-publisher";
+import metascraperTitle from "metascraper-title";
+import metascraperUrl from "metascraper-url";
 
 export default defineEventHandler(async () => {
   // Crawlers come with various utilities, e.g. for logging.
@@ -7,35 +17,24 @@ export default defineEventHandler(async () => {
   // This functionality is optional!
   // log.setLevel(LogLevel.DEBUG);
 
-  const scraperRules = await Promise.all(
-    [
-      "metascraper-author",
-      "metascraper-date",
-      "metascraper-description",
-      "metascraper-image",
-      "metascraper-logo-favicon",
-      "metascraper-logo",
-      "metascraper-clearbit",
-      "metascraper-publisher",
-      "metascraper-title",
-      "metascraper-url",
-    ].map(async (i) => {
-      const imported = await import(i);
-      const module = imported.default ?? imported;
-      if (i === "metascraper-logo-favicon") {
-        return module({
-          pickFn: async (sizes, { pickBiggerSize, gotOpts }) => {
-            const preferred = sizes.find((item) => item.rel?.includes("svg"));
-            return preferred ?? (await pickBiggerSize(sizes, { gotOpts }));
-          },
-        });
-      } else {
-        return module();
-      }
+  const scraper = await metascraper([
+    metascraperAuthor,
+    metascraperDate,
+    metascraperDescription,
+    metascraperImage,
+    metascraperLogoFavicon({
+      // Pass options directly
+      pickFn: async (sizes, { pickBiggerSize, gotOpts }) => {
+        const preferred = sizes.find((item) => item.rel?.includes("svg"));
+        return preferred ?? (await pickBiggerSize(sizes, { gotOpts }));
+      },
     }),
-  );
-
-  const scraper = await metascraper(scraperRules);
+    metascraperLogo,
+    metascraperClearbit,
+    metascraperPublisher,
+    metascraperTitle,
+    metascraperUrl,
+  ]);
 
   const results = [];
 
