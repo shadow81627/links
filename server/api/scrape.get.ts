@@ -103,8 +103,38 @@ export default defineEventHandler(async () => {
 
   // log.debug("Crawler finished.");
 
+  // Sharp loader
+  const getSharp = async () => {
+    return (await import("sharp").then(
+      (r) => r.default || r,
+    )) as typeof import("sharp");
+  };
+
+  const sharp = await getSharp();
+
+  function componentToHex(c: number) {
+    const hex = c.toString(16);
+    return hex.length === 1 ? "0" + hex : hex;
+  }
+  type RGBToHexOptions = { r: number; g: number; b: number };
+  function rgbToHex({ r, g, b }: RGBToHexOptions) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+  }
+
   // const values = await crawler.getData();
-  const data = results.map((item) => ({ attributes: item }));
+  const data = await Promise.all(
+    results.map(async (item) => {
+      const image = item.image
+        ? await $fetch(item.image, {
+            method: "GET",
+            responseType: "arrayBuffer",
+          })
+        : null;
+      const { dominant } = image ? await sharp(image).stats() : {};
+      const color = rgbToHex(dominant);
+      return { attributes: { color, ...item } };
+    }),
+  );
 
   return {
     data,

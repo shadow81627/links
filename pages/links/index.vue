@@ -55,6 +55,7 @@
                 style: {
                   'object-fit': 'contain',
                   'aspect-ratio': 640 / 360,
+                  'background-color': item.attributes.color,
                   'max-width': '100%',
                   height: 'auto',
                 },
