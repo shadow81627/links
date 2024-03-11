@@ -8,29 +8,13 @@
     </section>
     <section v-else-if="Array.isArray(data)" class="container">
       <div class="row">
-        <div class="col w-full flex">
-          <label
-            for="search"
-            class="flex p-2 border-r-none rounded-r-none rounded border-2 bg-transparent mb-0 text-neutral-200 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-          >
-            <Icon
-              name="carbon:search"
-              class="my-auto"
-              style="width: 32px; height: 32px"
-            />
-          </label>
-          <input
-            id="search"
-            v-model="search"
-            type="text"
-            name="search"
-            class="peer block min-h-[auto] flex-grow-1 rounded-l-none rounded border-l-none border-2 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-          />
+        <div class="col w-full">
+          <SearchInput v-model:search="search"></SearchInput>
         </div>
       </div>
       <div class="row">
         <div
-          v-for="item of data.filter(searchFilter)"
+          v-for="item of filtered"
           :key="item.attributes.title"
           class="flex col col-12 sm:col-6 md:col-6 lg:col-4 xl:col-3"
         >
@@ -91,6 +75,7 @@ import { useRouteQuery } from "@vueuse/router";
 const { clear } = useLoadingIndicator({
   throttle: 2000,
 });
+
 const search = useRouteQuery("search", "", {
   mode: "push",
   transform: (value) => {
@@ -122,4 +107,7 @@ function searchFilter(item) {
   }
   return true;
 }
+const filtered = computed(() => {
+  return data.value.filter(searchFilter);
+});
 </script>
