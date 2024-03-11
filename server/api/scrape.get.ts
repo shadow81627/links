@@ -1,4 +1,5 @@
 import { Dataset, CheerioCrawler, log, LogLevel, Configuration } from "crawlee";
+import type { Metadata } from "metascraper";
 import metascraper from "metascraper";
 import metascraperAuthor from "metascraper-author";
 import metascraperDate from "metascraper-date";
@@ -17,7 +18,7 @@ export default defineEventHandler(async () => {
   // This functionality is optional!
   // log.setLevel(LogLevel.DEBUG);
 
-  const scraper = await metascraper([
+  const scraper = metascraper([
     metascraperAuthor(),
     metascraperDate(),
     metascraperDescription(),
@@ -36,7 +37,7 @@ export default defineEventHandler(async () => {
     metascraperUrl(),
   ]);
 
-  const results = [];
+  const results: (Metadata & { heading: string })[] = [];
 
   // Create an instance of the CheerioCrawler class - a crawler
   // that automatically loads the URLs and parses their HTML using the cheerio library.
