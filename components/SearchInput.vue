@@ -34,13 +34,21 @@ function setSearch(value) {
         @click="open = true"
         @input="emit('update:search', $event.target?.value)"
       />
-      <div class="btn p-2" @click="setSearch('')">
+      <button
+        class="btn p-2 transition-all duration-500"
+        :class="{
+          'opacity-0': !search,
+          'opacity-100': search,
+          'pointer-events-none': !search,
+        }"
+        @click="setSearch('')"
+      >
         <Icon
           name="carbon:close"
           class="my-auto"
           style="width: 32px; height: 32px"
         ></Icon>
-      </div>
+      </button>
     </div>
     <div class="relative w-full">
       <div
