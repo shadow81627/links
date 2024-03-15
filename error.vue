@@ -1,43 +1,47 @@
 <template>
-  <div class="flex items-center justify-center h-screen">
-    <NuxtLoadingIndicator />
-    <div
-      id="message"
-      class="text-left max-w-[360px] flex flex-grow-1 flex-col justify-between rounded-lg bg-white shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-800"
-    >
-      <h2
-        class="d-block flex-none p-y[0.5rem] px-4 text-[1.25rem] font-500 leading-8"
-      >
-        {{ error.statusCode }}
-      </h2>
-      <h1
-        class="d-block flex-none p-y[0.5rem] px-4 text-[1.25rem] font-500 leading-8"
-      >
-        {{ title }}
-      </h1>
-
+  <Body class="dark:bg-dark dark:text-light !print:bg-light !print:text-dark">
+    <div class="h-screen flex items-center justify-center">
+      <NuxtLoadingIndicator />
       <div
-        v-if="error.statusMessage !== error.message || error.statusCode === 404"
-        class="flex-1 flex-grow-1 p-4"
+        id="message"
+        class="max-w-[360px] flex flex-grow-1 flex-col justify-between rounded-lg bg-white text-left shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-800"
       >
-        {{ description }}
-      </div>
-      <div class="flex p-2 flex-col gap-2">
-        <span
-          v-if="error.statusCode !== 404"
-          class="btn bg-dark text-light block w-full text-xl text-center"
-          @click="clearError()"
-          >Try again</span
+        <h2
+          class="d-block flex-none p-y[0.5rem] px-4 text-[1.25rem] font-500 leading-8"
         >
-        <span
-          class="btn bg-dark text-light block w-full text-xl text-center"
-          @click="clearError({ redirect: '/' })"
+          {{ error.statusCode }}
+        </h2>
+        <h1
+          class="d-block flex-none p-y[0.5rem] px-4 text-[1.25rem] font-500 leading-8"
         >
-          Home
-        </span>
+          {{ title }}
+        </h1>
+
+        <div
+          v-if="
+            error.statusMessage !== error.message || error.statusCode === 404
+          "
+          class="flex-1 flex-grow-1 p-4"
+        >
+          {{ description }}
+        </div>
+        <div class="flex flex-col gap-2 p-2">
+          <span
+            v-if="error.statusCode !== 404"
+            class="block w-full bg-dark text-center text-xl text-light btn"
+            @click="clearError()"
+            >Try again</span
+          >
+          <span
+            class="block w-full bg-dark text-center text-xl text-light btn"
+            @click="clearError({ redirect: '/' })"
+          >
+            Home
+          </span>
+        </div>
       </div>
     </div>
-  </div>
+  </Body>
 </template>
 
 <script setup lang="ts">
