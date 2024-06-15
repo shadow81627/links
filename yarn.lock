@@ -11247,6 +11247,7 @@ __metadata:
     nuxt-lodash: "npm:2.5.3"
     oslo: "npm:1.1.3"
     prettier: "npm:3.2.5"
+    slugify: "npm:1.6.6"
     ulidx: "npm:2.3.0"
   languageName: unknown
   linkType: soft
@@ -14711,6 +14712,13 @@ __metadata:
   version: 5.1.0
   resolution: "slash@npm:5.1.0"
   checksum: 10c0/eb48b815caf0bdc390d0519d41b9e0556a14380f6799c72ba35caf03544d501d18befdeeef074bc9c052acf69654bc9e0d79d7f1de0866284137a40805299eb3
+  languageName: node
+  linkType: hard
+
+"slugify@npm:1.6.6":
+  version: 1.6.6
+  resolution: "slugify@npm:1.6.6"
+  checksum: 10c0/e7e63f08f389a371d6228bc19d64ec84360bf0a538333446cc49dbbf3971751a6d180d2f31551188dd007a65ca771e69f574e0283290a7825a818e90b75ef44d
   languageName: node
   linkType: hard
 

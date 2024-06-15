@@ -39,6 +39,7 @@
     "metascraper-url": "5.45.0",
     "nuxt": "3.11.2",
     "oslo": "1.1.3",
+    "slugify": "1.6.6",
     "ulidx": "2.3.0"
   },
   "packageManager": "yarn@4.1.1",
