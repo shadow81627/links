@@ -1,4 +1,4 @@
-import { links } from "~/server/database/schema/links";
+import { Link } from "~/server/database/models/link";
 // import { sql } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
@@ -11,26 +11,9 @@ export default defineEventHandler(async (event) => {
   }
   // https://www.nexusmods.com/stardewvalley/mods/3040
 
-  let link;
+  const formData = await readFormData(event);
   const url = new URL(Object.fromEntries(event.node.req.body)?.url ?? "");
-  const existingLink = await db.query.links.findFirst({
-    where: (links, { eq, and }) =>
-      and(eq(links.hostname, url.hostname), eq(links.pathname, url.pathname)),
-  });
-  if (!existingLink) {
-    link = await db
-      .insert(links)
-      .values({
-        protocol: url.protocol,
-        hostname: url.hostname,
-        pathname: url.pathname,
-        hash: url.hash !== "" ? url.hash : undefined,
-        search: url.search !== "" ? url.search : undefined,
-      })
-      .returning();
-  } else {
-    link = existingLink;
-  }
+  const link = Link.firstOrCreate(url);
 
   // const values = await db.query.links.findMany({
   //   extras: {
