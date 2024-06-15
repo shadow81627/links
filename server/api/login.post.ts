@@ -39,7 +39,7 @@ export default eventHandler(async (event) => {
     // it is crucial your implementation is protected against brute-force attacks with login throttling etc.
     // If emails are public, you may outright tell the user that the email is invalid.
     throw createError({
-      message: "Incorrect email or password",
+      message: "Incorrect email",
       statusCode: 400,
     });
   }

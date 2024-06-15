@@ -23,7 +23,7 @@ async function login(e: Event) {
 <template>
   <div class="max-w-256px mx-auto mt-10">
     <h1>Sign in</h1>
-    <form method="post" action="/api/login" @submit="login">
+    <form method="POST" action="/api/login" @submit="login">
       <div class="relative mb-3">
         <label
           for="email"

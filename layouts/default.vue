@@ -29,9 +29,9 @@ const items = [
     pos: "1/1",
   },
   {
-    name: "Links",
+    name: "Content",
     icon: "carbon:link",
-    url: "/links",
+    url: "/contents",
   },
   {
     icon: "carbon:user",

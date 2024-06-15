@@ -11,12 +11,22 @@ import metascraperClearbit from "metascraper-clearbit";
 import metascraperPublisher from "metascraper-publisher";
 import metascraperTitle from "metascraper-title";
 import metascraperUrl from "metascraper-url";
+import { links } from "~/server/database/schema/links";
 
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (event) => {
   // Crawlers come with various utilities, e.g. for logging.
   // Here we use debug level of logging to improve the debugging experience.
   // This functionality is optional!
   // log.setLevel(LogLevel.DEBUG);
+
+  // Sharp loader
+  const getSharp = cachedPromise(async () => {
+    return (await import("sharp").then(
+      (r) => r.default || r,
+    )) as typeof import("sharp");
+  });
+
+  const sharp = await getSharp();
 
   const scraper = metascraper([
     metascraperAuthor(),
@@ -93,25 +103,25 @@ export default defineEventHandler(async () => {
     }),
   );
 
+  const { url } = getQuery(event);
+
+  const urls = url
+    ? [url]
+    : [
+        "https://crawlee.dev",
+        "https://apify.com",
+        "https://cheerio.js.org/",
+        "https://metascraper.js.org/",
+        "https://brightdata.com/",
+
+        "https://www.nexusmods.com/stardewvalley/mods/4779",
+        "https://www.nexusmods.com/stardewvalley/mods/1089",
+      ];
+
   // Run the crawler and wait for it to finish.
-  await crawler.run([
-    "https://crawlee.dev",
-    "https://apify.com",
-    "https://cheerio.js.org/",
-    "https://metascraper.js.org/",
-    "https://brightdata.com/",
-  ]);
+  await crawler.run(urls);
 
   // log.debug("Crawler finished.");
-
-  // Sharp loader
-  const getSharp = async () => {
-    return (await import("sharp").then(
-      (r) => r.default || r,
-    )) as typeof import("sharp");
-  };
-
-  const sharp = await getSharp();
 
   function componentToHex(c: number) {
     const hex = c.toString(16);
@@ -133,6 +143,37 @@ export default defineEventHandler(async () => {
         : null;
       const { dominant } = image ? await sharp(image).stats() : {};
       const color = rgbToHex(dominant);
+
+      const body = new FormData();
+      body.append("url", item.url);
+      await $fetch("/api/links", {
+        method: "POST",
+        body,
+        headers: {
+          Origin: getHeader(event, "Host"),
+          Host: getHeader(event, "Host"),
+          Cookie: `${lucia.sessionCookieName}=${getCookie(event, lucia.sessionCookieName)}`,
+        },
+      });
+
+      // const url = new URL(item.url ?? "");
+      // const existingLink = await db.query.links.findFirst({
+      //   where: (links, { eq, and }) =>
+      //     and(
+      //       eq(links.hostname, url.hostname),
+      //       eq(links.pathname, url.pathname),
+      //     ),
+      // });
+      // if (!existingLink) {
+      //   await db.insert(links).values({
+      //     protocol: url.protocol,
+      //     hostname: url.hostname,
+      //     pathname: url.pathname,
+      //     hash: url.hash !== "" ? url.hash : undefined,
+      //     search: url.search !== "" ? url.search : undefined,
+      //   });
+      // }
+
       return { attributes: { color, ...item } };
     }),
   );
