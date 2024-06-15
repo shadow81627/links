@@ -34,6 +34,11 @@ const items = [
     url: "/contents",
   },
   {
+    name: "Create",
+    icon: "carbon:intent-request-create",
+    url: "/create",
+  },
+  {
     icon: "carbon:user",
     name: "Users",
     url: "/users",
