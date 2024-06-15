@@ -27,6 +27,12 @@
         </div>
         <div class="flex flex-col gap-2 p-2">
           <span
+            v-if="error.statusCode === 401"
+            class="block w-full bg-dark text-center text-xl text-light btn"
+            @click="clearError({ redirect: '/login' })"
+            >Login</span
+          >
+          <span
             v-if="error.statusCode !== 404"
             class="block w-full bg-dark text-center text-xl text-light btn"
             @click="clearError()"
