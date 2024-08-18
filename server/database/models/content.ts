@@ -1,6 +1,7 @@
 import { InferSelectModel } from "drizzle-orm";
 import slugify from "slugify";
 import { contents } from "~/server/database/schema/contents";
+import { first } from "lodash-es";
 
 export class Content {
   /**
@@ -24,9 +25,10 @@ export class Content {
       where: (contents, { eq }) => eq(contents.slug, slug),
     });
     if (existing) return existing;
-    return await db
+    const results = await db
       .insert(contents)
       .values({ ...data, slug })
       .returning();
+    return first(results);
   }
 }
