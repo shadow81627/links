@@ -15,11 +15,11 @@
       <div class="row">
         <div
           v-for="item of filtered"
-          :key="item.attributes.title"
+          :key="item.attributes.slug"
           class="flex col col-12 sm:col-6 md:col-6 lg:col-4 xl:col-3"
         >
           <NuxtLink
-            :to="`/links/${encodeURIComponent(item.attributes.title)}`"
+            :to="`/contents/${encodeURIComponent(item.attributes.slug)}`"
             class="max-w-full flex flex-col justify-between flex-grow-1 bg-white dark:bg-slate-800 rounded-lg ring-1 ring-slate-900/5 shadow-md overflow-hidden"
           >
             <NuxtPicture
@@ -48,7 +48,7 @@
             <div
               class="d-block font-500 flex-none text-[1.25rem] px-4 p-y[0.5rem] leading-8"
             >
-              <span>{{ item.attributes.title }}</span>
+              <span>{{ item.attributes.name }}</span>
             </div>
             <div class="flex-1 flex-grow-1 p-4">
               {{ item.attributes.description }}
