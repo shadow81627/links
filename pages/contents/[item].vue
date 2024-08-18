@@ -9,7 +9,7 @@
         <div class="row">
           <div class="col w-full">
             <h1 class="text-4xl font-extrabold dark:text-white italic">
-              {{ data.attributes.title }}
+              {{ data.attributes.name }}
             </h1>
           </div>
           <div
@@ -30,24 +30,21 @@
 
 <script setup>
 const route = useRoute();
-const { data, pending } = await useFetch("/api/scrape", {
-  lazy: true,
-  // server: false,
-  transform({ data }) {
-    const _data = data.data ?? data;
-    if (Array.isArray(_data)) {
-      const found = _data.find(
-        (item) => item.attributes.title === route.params.item,
-      );
-      return found;
-    }
-    return _data;
+const { data, pending } = await useFetch(
+  `/api/contents/${encodeURIComponent(route.params.item)}`,
+  {
+    lazy: true,
+    // server: false,
+    transform({ data }) {
+      const _data = data.data ?? data;
+      return _data;
+    },
   },
-});
+);
 if (!pending.value && !data.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: "Link Not Found",
+    statusMessage: "Not Found",
     fatal: true,
   });
 }
