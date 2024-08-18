@@ -2,9 +2,12 @@ import { sql, relations } from "drizzle-orm";
 import { sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { contents } from "./contents";
 import { links } from "./links";
+import { ulid } from "ulidx";
 
 export const contentsLinks = sqliteTable("contents_links", {
-  id: text("id").primaryKey(),
+  id: text("id")
+    .primaryKey()
+    .$default(() => ulid()),
   contentId: text("content_id").notNull(),
   // .references(() => contents.id),
   linkId: text("link_id").notNull(),
