@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const errors = ref([]);
+const errors = ref<string[]>([]);
 const url = ref("");
 const name = ref("");
 const description = ref("");
