@@ -2,6 +2,31 @@
 import { Link } from "~/server/database/models/link";
 import { contentsLinks } from "~/server/database/schema/contents_links";
 import { Content } from "~/server/database/models/content";
+import { createInsertSchema } from "drizzle-valibot";
+import { safeParse, string, url, pipe, undefined_ } from "valibot";
+import { contents } from "~/server/database/schema/contents";
+import { InferSelectModel, and, eq } from "drizzle-orm";
+import { links } from "~/server/database/schema/links";
+
+async function createContentsLink(
+  content: InferSelectModel<typeof contents>,
+  link: InferSelectModel<typeof links>,
+) {
+  const existing = await db
+    .select()
+    .from(contentsLinks)
+    .where(
+      and(
+        eq(contentsLinks.contentId, content.id),
+        eq(contentsLinks.linkId, link.id),
+      ),
+    );
+  if (existing) return existing;
+  return await db
+    .insert(contentsLinks)
+    .values({ contentId: content.id, linkId: link.id })
+    .returning();
+}
 
 export default defineEventHandler(async (event) => {
   const user = event.context.user;
@@ -12,31 +37,41 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const formData = await readFormData(event);
-
-  const url = new URL(formData.get("url") ?? "");
-  const link = Link.firstOrCreate(url);
-
-  const content = await Content.firstOrCreate({
-    name: formData.get("name"),
-    description: formData.get("description"),
+  const contentSchema = createInsertSchema(contents, {
+    id: () => undefined_(),
   });
+  const formData = await readFormData(event);
+  const validation = safeParse(contentSchema, Object.fromEntries(formData));
 
-  // const existingContentLink = await db.query.findFirst({
-  //   where: (contents, { eq }) => and(eq(contents.hostname, url.hostname), eq()),
-  // });
+  if (!validation.success) {
+    throw createError({
+      message: "Unprocessable Content",
+      statusCode: 422,
+      data: validation,
+    });
+  }
+  const UrlSchema = pipe(
+    string("A URL must be string."),
+    url("The URL is badly formatted."),
+  );
+  const linkValidation = safeParse(
+    UrlSchema,
+    Object.fromEntries(formData)?.url,
+  );
+  const link = linkValidation.success
+    ? await Link.firstOrCreate(new URL(linkValidation.output ?? ""))
+    : undefined;
 
-  // const values = await db.query.links.findMany({
-  //   extras: {
-  //     createdAt: sql`(strftime('%Y-%m-%dT%H:%M:%fZ', ${links.createdAt}))`.as(
-  //       "created_at",
-  //     ),
-  //   },
-  // });
+  const content = await Content.firstOrCreate(validation.output);
+
+  if (link && content?.id) {
+    await createContentsLink(content, link);
+  }
+
   const data = {
-    id: content.id,
+    id: content?.id,
     type: "contents",
-    attributes: { ...link },
+    attributes: { ...content },
   };
   return { data };
 });
