@@ -11,7 +11,8 @@ import metascraperClearbit from "metascraper-clearbit";
 import metascraperPublisher from "metascraper-publisher";
 import metascraperTitle from "metascraper-title";
 import metascraperUrl from "metascraper-url";
-import { links } from "~/server/database/schema/links";
+import { pipe, safeParse, string, url } from "valibot";
+import { Link } from "~/server/database/models/link";
 
 export default defineEventHandler(async (event) => {
   // Crawlers come with various utilities, e.g. for logging.
@@ -34,8 +35,20 @@ export default defineEventHandler(async (event) => {
     metascraperDescription(),
     metascraperImage(),
     metascraperLogoFavicon({
-      // Pass options directly
-      pickFn: async (sizes, { pickBiggerSize, gotOpts }) => {
+      // @ts-ignore
+      pickFn: async (
+        sizes: Record<string, any>[],
+        {
+          pickBiggerSize,
+          gotOpts,
+        }: {
+          pickBiggerSize: (
+            size: Record<string, any>[],
+            options: { gotOpts: any },
+          ) => Promise<Record<string, any>>;
+          gotOpts: any;
+        },
+      ) => {
         const preferred = sizes.find((item) => item.rel?.includes("svg"));
         return preferred ?? (await pickBiggerSize(sizes, { gotOpts }));
       },
@@ -47,7 +60,7 @@ export default defineEventHandler(async (event) => {
     metascraperUrl(),
   ]);
 
-  const results: (Metadata & { heading: string })[] = [];
+  const results: (Metadata & { heading: string; url: string })[] = [];
 
   // Create an instance of the CheerioCrawler class - a crawler
   // that automatically loads the URLs and parses their HTML using the cheerio library.
@@ -103,10 +116,16 @@ export default defineEventHandler(async (event) => {
     }),
   );
 
-  const { url } = getQuery(event);
+  const query = getQuery(event);
 
-  const urls = url
-    ? [url]
+  const UrlSchema = pipe(
+    string("A URL must be string."),
+    url("The URL is badly formatted."),
+  );
+  const linkValidation = safeParse(UrlSchema, query.url);
+
+  const urls = linkValidation.success
+    ? [linkValidation.output]
     : [
         "https://crawlee.dev",
         "https://apify.com",
@@ -141,40 +160,33 @@ export default defineEventHandler(async (event) => {
             responseType: "arrayBuffer",
           })
         : null;
-      const { dominant } = image ? await sharp(image).stats() : {};
+
+      if (!image) {
+        return {
+          attributes: item,
+        };
+      }
+
+      const { dominant } = await sharp(image).stats();
+      const { format } = await sharp(image).metadata();
       const color = rgbToHex(dominant);
 
-      const body = new FormData();
-      body.append("url", item.url);
-      await $fetch("/api/links", {
-        method: "POST",
-        body,
-        headers: {
-          Origin: getHeader(event, "Host"),
-          Host: getHeader(event, "Host"),
-          Cookie: `${lucia.sessionCookieName}=${getCookie(event, lucia.sessionCookieName)}`,
-        },
-      });
+      // Link.firstOrCreate(new URL(item.url));
 
-      // const url = new URL(item.url ?? "");
-      // const existingLink = await db.query.links.findFirst({
-      //   where: (links, { eq, and }) =>
-      //     and(
-      //       eq(links.hostname, url.hostname),
-      //       eq(links.pathname, url.pathname),
-      //     ),
-      // });
-      // if (!existingLink) {
-      //   await db.insert(links).values({
-      //     protocol: url.protocol,
-      //     hostname: url.hostname,
-      //     pathname: url.pathname,
-      //     hash: url.hash !== "" ? url.hash : undefined,
-      //     search: url.search !== "" ? url.search : undefined,
-      //   });
-      // }
-
-      return { attributes: { color, ...item } };
+      return {
+        attributes: item,
+        included: [
+          {
+            type: "image",
+            attributes: {
+              url: item.image,
+              dominant,
+              format,
+              color,
+            },
+          },
+        ],
+      };
     }),
   );
 
