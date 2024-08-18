@@ -1,5 +1,6 @@
 import { InferSelectModel } from "drizzle-orm";
 import { links } from "~/server/database/schema/links";
+import { first } from "lodash-es";
 export class Link {
   static async firstOrCreate(data: InferSelectModel<typeof links> | URL) {
     if (!(data.hostname || data.pathname)) return;
@@ -20,7 +21,7 @@ export class Link {
       },
     });
     if (existingLink) return existingLink;
-    return await db
+    const results = await db
       .insert(links)
       .values({
         protocol: data.protocol,
@@ -30,5 +31,6 @@ export class Link {
         search: data.search !== "" ? data.search : undefined,
       })
       .returning();
+    return first(results);
   }
 }
