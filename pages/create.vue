@@ -12,7 +12,7 @@ async function submit(e: Event) {
     body,
   });
   if (!result.error.value) {
-    await navigateTo("/");
+    // await navigateTo("/");
   } else {
     if (result.error.value.statusMessage) {
       errors.value = [result.error.value.statusMessage];
