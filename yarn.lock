@@ -8142,6 +8142,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"drizzle-valibot@npm:0.2.0":
+  version: 0.2.0
+  resolution: "drizzle-valibot@npm:0.2.0"
+  peerDependencies:
+    drizzle-orm: ">=0.23.13"
+    valibot: ">=0.20"
+  checksum: 10c0/f0687c5204d96e7a47bd43ac04e560bd921dc2e330efd4c85d5ebce9d20bf5cdff6529908b826a3e9cf6f98ab814d9269698c246e9115dc4abd1e087c6401d8c
+  languageName: node
+  linkType: hard
+
 "duplexer@npm:^0.1.2, duplexer@npm:~0.1.1":
   version: 0.1.2
   resolution: "duplexer@npm:0.1.2"
@@ -11227,6 +11237,7 @@ __metadata:
     crawlee: "npm:3.8.1"
     drizzle-kit: "npm:0.20.14"
     drizzle-orm: "npm:0.30.2"
+    drizzle-valibot: "npm:0.2.0"
     eslint: "npm:8.57.0"
     eslint-config-prettier: "npm:9.1.0"
     eslint-plugin-prettier: "npm:5.1.3"
@@ -11249,6 +11260,7 @@ __metadata:
     prettier: "npm:3.2.5"
     slugify: "npm:1.6.6"
     ulidx: "npm:2.3.0"
+    valibot: "npm:0.32.0"
   languageName: unknown
   linkType: soft
 
@@ -16158,6 +16170,13 @@ __metadata:
   version: 1.0.0
   resolution: "vali-date@npm:1.0.0"
   checksum: 10c0/5755215f6734caab535f60af0a32bbbf2052c61b1a40668d773df78fd3754e4fe9da2ea5466731505f3e0a599acc209d5578c4b70488ed120fb03f0c2ab06449
+  languageName: node
+  linkType: hard
+
+"valibot@npm:0.32.0":
+  version: 0.32.0
+  resolution: "valibot@npm:0.32.0"
+  checksum: 10c0/cff4cc2627fccec3f7e88f65f3ef500a99f55e37c7916bb136df2e552492673424e36901705223aeafa06dbaac468e772a14ffb6b0999fd9c7d7162508605219
   languageName: node
   linkType: hard
 
