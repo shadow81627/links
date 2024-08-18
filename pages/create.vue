@@ -14,7 +14,9 @@ async function submit(e: Event) {
   if (!result.error.value) {
     await navigateTo("/");
   } else {
-    errors.value = [result.error.value.statusMessage];
+    if (result.error.value.statusMessage) {
+      errors.value = [result.error.value.statusMessage];
+    }
   }
 }
 async function scrape() {
